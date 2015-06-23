@@ -29,10 +29,12 @@ module.exports = function() {
     for(var k in config.files) config.files[k] = relativate(config.files[k]);
 
     // With everything set up, let's make an ACTUAL config.
+    var formats = params.types || ['eot', 'woff', 'ttf', 'svg'];
     var fontconf = {
         files: config.files,
         fontName: config.fontName,
-        types: params.types || ['eot', 'woff', 'ttf', 'svg'],
+        types: formats,
+        order: formats,
         rename: (typeof config.rename == "function" ? config.rename : function(f){
             return path.basename(f, ".svg");
         }),
@@ -64,9 +66,8 @@ module.exports = function() {
     fontgen(fontconf, function(err, res){
         if(err) cb(err);
         var urls = {};
-        for(var i in fontconf.types) {
-            var format = fontconf.types[i];
-            var filename = fontconf.fontName+"."+format;
+        for(var i in formats) {
+            var format = formats[i];
             var url = loaderUtils.interpolateName(this,
                 "[hash]-"+fontconf.fontName+"."+format,
                 {
