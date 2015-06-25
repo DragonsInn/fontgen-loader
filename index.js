@@ -35,6 +35,10 @@ module.exports = function() {
         fontName: config.fontName,
         types: formats,
         order: formats,
+        templateOptions: {
+            baseClass: config.baseClass || "icon",
+            classPrefix: config.classPrefix || "icon-"
+        },
         rename: (typeof config.rename == "function" ? config.rename : function(f){
             return path.basename(f, ".svg");
         }),
