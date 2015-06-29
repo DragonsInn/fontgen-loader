@@ -3,6 +3,7 @@ var fontgen = require("webfonts-generator");
 var path = require("path");
 
 module.exports = function() {
+    this.cacheable();
     var params = loaderUtils.parseQuery(this.query);
     var config = require(this.resourcePath);
     config.__dirname = path.dirname(this.resourcePath);
