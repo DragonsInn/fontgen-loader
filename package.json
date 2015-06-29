@@ -1,6 +1,6 @@
 {
   "name": "fontgen-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A WebPack loader to automaticaly generate font files and CSS to make your own icon font",
   "main": "index.js",
   "scripts": {
