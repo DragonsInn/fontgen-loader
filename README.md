@@ -86,7 +86,7 @@ Which template to use? By default, a CSS one is used. The template is to be proc
 - `files`, Array
 An array of SVG icon files.
 
-- ´fontName`, String
+- `fontName`, String
 Name of your font.
 
 - `classPrefix`, String
@@ -96,3 +96,10 @@ The prefix to be used with each icon class.
 The base class, under which each icon class is to be crated.
 
 For additional options, see the generator's README file.
+
+### Special configuration
+There is one special configuration optin that exists in both, the actual font configuration and as a query parameter: `fileName`. This one decides the output of the font filenames. You can create a filename template with these elements (will likely become more in the future):
+
+- `[fontname]`: The name of the font. I.e. "Awesomefont".
+- `[ext]`: The extension. I.e.: `.woff`.
+- `[hash]`: The hash of your current compilation.

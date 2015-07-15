@@ -73,8 +73,12 @@ module.exports = function() {
         var urls = {};
         for(var i in formats) {
             var format = formats[i];
+            var filename = config.fileName || params.fileName || "[hash]-[fontname][ext]";
+            filename = filename
+                .replace("[fontname]",fontconf.fontName)
+                .replace("[ext]", "."+format);
             var url = loaderUtils.interpolateName(this,
-                "[hash]-"+fontconf.fontName+"."+format,
+                filename,
                 {
                     context: self.options.context || this.context,
                     content: res[format]
