@@ -21,7 +21,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.font.(js|json)$/,
-                loader: "style?css?fontgen?formats=woff,eot,ttf"
+                loader: "style!css!fontgen?formats=woff,eot,ttf"
             }
         ]
     }
