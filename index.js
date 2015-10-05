@@ -2,6 +2,13 @@ var loaderUtils = require("loader-utils");
 var fontgen = require("webfonts-generator");
 var path = require("path");
 
+var mimeTypes = {
+    'eot': 'application/vnd.ms-fontobject',
+    'svg': 'image/svg+xml',
+    'ttf': 'application/x-font-ttf',
+    'woff': 'application/font-woff',
+}
+
 module.exports = function() {
     this.cacheable();
     var params = loaderUtils.parseQuery(this.query);
@@ -68,24 +75,33 @@ module.exports = function() {
     var pub = (
         opts.output.publicPath || "/"
     );
+    var embed = !!params.embed
+
     fontgen(fontconf, function(err, res){
         if(err) cb(err);
         var urls = {};
         for(var i in formats) {
             var format = formats[i];
-            var filename = config.fileName || params.fileName || "[hash]-[fontname][ext]";
-            filename = filename
-                .replace("[fontname]",fontconf.fontName)
-                .replace("[ext]", "."+format);
-            var url = loaderUtils.interpolateName(this,
-                filename,
-                {
-                    context: self.options.context || this.context,
-                    content: res[format]
-                }
-            );
-            urls[format] = path.join(pub, url);
-            self.emitFile(url, res[format]);
+            if(!embed) {
+                var filename = config.fileName || params.fileName || "[hash]-[fontname][ext]";
+                filename = filename
+                    .replace("[fontname]",fontconf.fontName)
+                    .replace("[ext]", "."+format);
+                var url = loaderUtils.interpolateName(this,
+                    filename,
+                    {
+                        context: self.options.context || this.context,
+                        content: res[format]
+                    }
+                );
+                urls[format] = path.join(pub, url);
+                self.emitFile(url, res[format]);
+            } else {
+                urls[format] = 'data:'
+                    + mimeTypes[format]
+                    + ';charset=utf-8;base64,'
+                    + (new Buffer(res[format]).toString('base64'));
+            }
         }
         cb(null, res.generateCss(urls));
     });

@@ -81,6 +81,9 @@ Possible values are: `["svg", "eot", "wof", "ttf"]`.
 - `template`, String
 Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [the generator](https://github.com/nfroidure/svgicons2svgfont)'s readme itself for more info.
 
+- `embed`, Boolean
+Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration. Example configuration: `loader: "style!css!fontgen?embed&types=woff"`.
+
 ## Font configuration (`*.font.js` or `*.font.json`)
 
 - `files`, Array
