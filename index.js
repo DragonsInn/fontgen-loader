@@ -31,6 +31,8 @@ module.exports = function() {
 
     // With everything set up, let's make an ACTUAL config.
     var formats = params.types || ['eot', 'woff', 'ttf', 'svg'];
+    if(formats.constructor !== Array) formats = [formats];
+
     var fontconf = {
         files: config.files,
         fontName: config.fontName,

@@ -21,7 +21,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.font.(js|json)$/,
-                loader: "style!css!fontgen?formats=woff,eot,ttf"
+                loader: "style!css!fontgen?types=woff,eot,ttf"
             }
         ]
     }
@@ -75,7 +75,7 @@ You also can use a module like `glob` to pick up a variable set of icons, too. M
 # Configuration
 ## Loader parameters
 
-- `formats`, Array
+- `types`, Array
 Possible values are: `["svg", "eot", "wof", "ttf"]`.
 
 - `template`, String
