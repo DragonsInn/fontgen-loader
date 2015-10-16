@@ -16,7 +16,7 @@ module.exports = function() {
     config.__dirname = path.dirname(this.resourcePath);
 
     var relativate = function(file) {
-        if(file.substr(0,1) == "/") {
+        if(path.resolve(file) === path.normalize(file)){
             // Absolute path.
             return file;
         } else {
