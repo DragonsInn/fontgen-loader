@@ -57,7 +57,7 @@ module.exports = function() {
     };
     
     if(config.cssTemplate) {
-        fontconf.cssTemplate = config.cssTemplate;
+        fontconf.cssTemplate = relativate(config.cssTemplate);
     }
 
     // svgicons2svgfont stuff
