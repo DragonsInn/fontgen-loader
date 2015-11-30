@@ -55,6 +55,10 @@ module.exports = function() {
         dest: "",
         writeFiles: false
     };
+    
+    if(config.cssTemplate) {
+        fontconf.cssTemplate = config.cssTemplate;
+    }
 
     // svgicons2svgfont stuff
     var keys = [
