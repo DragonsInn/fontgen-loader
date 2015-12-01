@@ -56,6 +56,16 @@ module.exports = function() {
         writeFiles: false
     };
 
+    if(config.cssTemplate) {
+        fontconf.cssTemplate = relativate(config.cssTemplate);
+    }
+
+    for(option in config.templateOptions) {
+        if( config.templateOptions.hasOwnProperty(option) ) {
+            fontconf.templateOptions[option] = config.templateOptions[option];
+        }
+    }
+
     // svgicons2svgfont stuff
     var keys = [
         "fixedWidth",
