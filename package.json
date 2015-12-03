@@ -1,7 +1,8 @@
 {
   "name": "fontgen-loader",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A WebPack loader to automaticaly generate font files and CSS to make your own icon font",
+  "repository": "DragonsInn/fontgen-loader",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
