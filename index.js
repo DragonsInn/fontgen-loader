@@ -45,6 +45,7 @@ module.exports = function() {
         fontName: config.fontName,
         types: formats,
         order: formats,
+        fontHeight: config.fontHeight || 1000, // Fixes conversion issues with small svgs
         templateOptions: {
             baseClass: config.baseClass || "icon",
             classPrefix: config.classPrefix || "icon-"
