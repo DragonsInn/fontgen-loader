@@ -87,7 +87,7 @@ Should the fonts be embedded in the CSS? By default the fonts are written to dis
 ## Font configuration (`*.font.js` or `*.font.json`)
 
 - `files`, Array
-An array of SVG icon files.
+An array of SVG icon files. Supports glob
 
 - `fontName`, String
 Name of your font.
