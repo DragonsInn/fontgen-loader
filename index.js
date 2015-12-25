@@ -9,10 +9,17 @@ var mimeTypes = {
     'woff': 'application/font-woff',
 }
 
-module.exports = function() {
+module.exports = function (content) {
     this.cacheable();
     var params = loaderUtils.parseQuery(this.query);
-    var config = require(this.resourcePath);
+    var config;
+    try {
+        config = JSON.parse(content);
+    }
+    catch (ex) {
+        config = this.exec(content, this.resourcePath);
+    }
+
     config.__dirname = path.dirname(this.resourcePath);
 
     var relativate = function(file) {
