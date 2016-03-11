@@ -21,7 +21,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.font.(js|json)$/,
-                loader: "style!css!fontgen?types=woff,eot,ttf"
+                loader: "style!css!fontgen"
             }
         ]
     }
@@ -45,19 +45,31 @@ Now, the loader will load in the font from the given configuration, and the CSS 
 
 Example:
 
-```json
-{
+module style
+```javascript
+module.exports = {
     "files": [
-        "icon/my.svg",
-        "icon/awesome.svg",
-        "icon/stuff.svg"
-    ],
+            "icon/my.svg",
+            "icon/awesome.svg",
+            "icon/stuff.svg",
+            "icon/special/*.svg" // glob style
+        ],
     "fontName": "Awesomecons",
     "classPrefix": "ai-",
     "baseClass": "ai",
-    "fixedWidth": true
+    "fixedWidth": true,
+    "types": ["eot", "woff", "ttf", "svg"] // this is the default
 }
 ```
+
+or .json (content should be an object)
+```json
+{
+    "files": []
+}
+```
+
+
 
 Now, the loader will pick up this config, pull it through the generator and:
 
@@ -74,9 +86,6 @@ You also can use a module like `glob` to pick up a variable set of icons, too. M
 
 # Configuration
 ## Loader parameters
-
-- `types`, Array
-Possible values are: `["svg", "eot", "wof", "ttf"]`.
 
 - `template`, String
 Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [the generator](https://github.com/nfroidure/svgicons2svgfont)'s readme itself for more info.
@@ -97,6 +106,9 @@ The prefix to be used with each icon class.
 
 - `baseClass`, String
 The base class, under which each icon class is to be crated.
+
+- `types`, Array
+Possible values are: `["svg", "eot", "wof", "ttf"]`.
 
 For additional options, see the generator's README file.
 
