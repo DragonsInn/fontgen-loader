@@ -37,8 +37,6 @@ function getFilesAndDeps(patterns, context) {
 
         var globDirs = glob.sync(path.dirname(globExp) + '/', globOptions);
         directoryDeps = directoryDeps.concat(globDirs.map(absolute(context)));
-
-
     }
 
     // Re-work the files array.
@@ -58,7 +56,6 @@ function getFilesAndDeps(patterns, context) {
             files: filesDeps
         }
     };
-
 }
 
 module.exports = function (content) {
@@ -102,19 +99,28 @@ module.exports = function (content) {
             baseClass: config.baseClass || "icon",
             classPrefix: "classPrefix" in config ? config.classPrefix : "icon-"
         },
-        rename: (typeof config.rename == "function" ? config.rename : function (f) {
-            return path.basename(f, ".svg");
-        }),
         dest: "",
-        writeFiles: false
+        writeFiles: false,
+        formatOptions: config.formatOptions || {}
     };
+
+    // This originally was in the object notation itself.
+    // Unfortunately that actually broke my editor's syntax-highlighting...
+    // ... what a shame.
+    if(typeof config.rename == "function") {
+        fontconf.rename = config.rename;
+    } else {
+        fontconf.rename = function(f) {
+            return path.basename(f, ".svg");
+        }
+    }
 
     if (config.cssTemplate) {
         fontconf.cssTemplate = absolute(this.context, config.cssTemplate);
     }
 
-    for (var option in config.templateOptions) {
-        if (config.templateOptions.hasOwnProperty(option)) {
+    for(var option in config.templateOptions) {
+        if(config.templateOptions.hasOwnProperty(option)) {
             fontconf.templateOptions[option] = config.templateOptions[option];
         }
     }
