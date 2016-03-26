@@ -78,8 +78,11 @@ Now, the loader will pick up this config, pull it through the generator and:
 
 And there you are - your webfont is done. Now, here is one thing: You can use JavaScript too. A useful thing is, that there are two additional options that I did not mention:
 
+In addition, you also have these options:
+
 - `.rename`: This should be a function that returns the icon's name based on the input (filename).
 - `.log`: You can log stuff here.
+- `.formatOptions`: An object containing options to their specific transformers. See [this PR](https://github.com/sunflowerdeath/webfonts-generator/pull/6) and [this README entry](https://github.com/sunflowerdeath/webfonts-generator#formatoptions) to learn more.
 
 You also can use a module like `glob` to pick up a variable set of icons, too. Mix and match and mind the various licenses - and make your own webfont!
 
