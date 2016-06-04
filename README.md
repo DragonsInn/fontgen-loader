@@ -90,8 +90,6 @@ You also can use a module like `glob` to pick up a variable set of icons, too. M
 # Configuration
 ## Loader parameters
 
-- `template`, String
-Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [the generator](https://github.com/sunflowerdeath/webfonts-generator)'s readme itself for more info.
 
 - `embed`, Boolean
 Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration. Example configuration: `loader: "style!css!fontgen?embed&types=woff"`.
@@ -112,6 +110,9 @@ The base class, under which each icon class is to be crated.
 
 - `types`, Array
 Possible values are: `["svg", "eot", "wof", "ttf"]`.
+
+- `cssTemplate`, String
+Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [the generator](https://github.com/sunflowerdeath/webfonts-generator)'s readme itself for more info.
 
 For additional options, see the generator's README file.
 
