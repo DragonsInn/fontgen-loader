@@ -160,10 +160,10 @@ module.exports = function (content) {
         for (var i in formats) {
             var format = formats[i];
             if (!embed) {
-                var filename = config.fileName || params.fileName || "[hash]-[fontname][ext]";
+                var filename = config.fileName || params.fileName || "[hash]-[fontname].[ext]";
                 filename = filename
                   .replace("[fontname]", fontconf.fontName)
-                  .replace("[ext]", "." + format);
+                  .replace("[ext]", format);
                 var url = loaderUtils.interpolateName(this,
                   filename,
                   {
