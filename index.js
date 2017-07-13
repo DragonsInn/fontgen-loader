@@ -162,7 +162,7 @@ module.exports = function (content) {
             var format = formats[i];
             if (!embed) {
                 var filename = config.fileName || params.fileName || "[chunkhash]-[fontname][ext]";
-                var chunkHash = filename.indexOf('[chunkhash]') !== -1 ? hashFiles(fontconf.files) : '';
+                var chunkHash = filename.indexOf('[chunkhash]') !== -1 ? hashFiles(fontconf.files, params.hashLength) : '';
                 filename = filename
                     .replace("[chunkhash]", chunkHash)
                     .replace("[fontname]", fontconf.fontName)
