@@ -2,6 +2,7 @@ var loaderUtils = require("loader-utils");
 var fontgen = require("webfonts-generator");
 var path = require("path");
 var glob = require('glob');
+var hashFiles = require('./utils').hashFiles;
 
 var mimeTypes = {
     'eot': 'application/vnd.ms-fontobject',
@@ -139,7 +140,7 @@ module.exports = function (content) {
             fontconf[keys[x]] = config[keys[x]];
         }
     }
-
+    
     var cb = this.async();
     var self = this;
     var opts = this.options;
@@ -160,10 +161,12 @@ module.exports = function (content) {
         for (var i in formats) {
             var format = formats[i];
             if (!embed) {
-                var filename = config.fileName || params.fileName || "[hash]-[fontname][ext]";
+                var filename = config.fileName || params.fileName || "[chunkhash]-[fontname][ext]";
+                var chunkHash = filename.indexOf('[chunkhash]') !== -1 ? hashFiles(fontconf.files) : '';
                 filename = filename
-                  .replace("[fontname]", fontconf.fontName)
-                  .replace("[ext]", "." + format);
+                    .replace("[chunkhash]", chunkHash)
+                    .replace("[fontname]", fontconf.fontName)
+                    .replace("[ext]", "." + format);
                 var url = loaderUtils.interpolateName(this,
                   filename,
                   {

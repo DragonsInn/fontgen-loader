@@ -5,7 +5,7 @@
   "repository": "DragonsInn/fontgen-loader",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava -v ./test/ava.js"
   },
   "keywords": [
     "font",
@@ -20,11 +20,13 @@
   "author": "Ingwie Phoenix <ingwie2000@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "glob": "^6.0.2",
+    "hash-files": "^1.1.1",
     "loader-utils": "^0.2.10",
-    "webfonts-generator": "^0.3.2",
-    "glob": "^6.0.2"
+    "webfonts-generator": "^0.3.2"
   },
   "devDependencies": {
+    "ava": "^0.20.0",
     "css-loader": "^0.15.1",
     "file-loader": "^0.8.4",
     "node-libs-browser": "^0.5.2",
