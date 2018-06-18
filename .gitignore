@@ -1,3 +1,5 @@
 node_modules/
 test/build/
 test/bundle.js
+.DS_Store
+.idea

@@ -142,7 +142,7 @@ module.exports = function (content) {
 
     var cb = this.async();
     var self = this;
-    var opts = this.options;
+    var opts = this.options || this._compilation.options;
     var pub = (
       opts.output.publicPath || "/"
     );
