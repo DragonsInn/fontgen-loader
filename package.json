@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "loader-utils": "^0.2.10",
-    "webfonts-generator": "^0.3.2",
+    "webfonts-generator": "^0.4.0",
     "glob": "^6.0.2"
   },
   "devDependencies": {
